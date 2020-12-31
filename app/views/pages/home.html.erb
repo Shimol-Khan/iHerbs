@@ -1,0 +1,12 @@
+<% provide(:page_title, 'Home') %>
+<% provide(:home_active, "active") %>
+
+<main style="background-image: url('https://i.imgur.com/QyjOf9i.jpg')">
+  <%= image_tag('https://i.imgur.com/GyH0bLs.jpg', :class=>"rounded-circle mb-3", :size=>"140x140")%>
+  <h1 class="cover-heading">iHerbs</h1>
+  <p class="lead">Natural herbs and traditional medicines (Ayurvedic) are one of the greatest discovery of humankind</p>
+  <p class="lead mt-5">
+    <%= link_to "Contact Us", new_contact_path, :class=>"btn btn-success" %>
+  </p>
+</main>
+

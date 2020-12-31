@@ -1,0 +1,14 @@
+<% provide(:page_title, 'Add New Herb') %>
+<% provide(:herb_active, "active") %>
+<div class="container">
+  <div class="row justify-content-center" style="margin-top: 8vh">
+    <div class="col-lg-12">
+      <div class="card mb-2">
+        <div class="card-body">
+          <h3 class="py-3">Add New Herb</h3>
+          <%= render 'form', herb: @herb %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

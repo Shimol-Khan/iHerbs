@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: 6732
+
+development:
+  <<: *default
+  database: iHerbs_development
+  username: postgres
+  password: 6732
+
+test:
+  <<: *default
+  database: iHerbs_test
+
+production:
+  <<: *default
+  database: iHerbs_production
+  username: iHerbs
+  password: <%= ENV['IHERBS_DATABASE_PASSWORD'] %>

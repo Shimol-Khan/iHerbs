@@ -1,0 +1,60 @@
+@import "bootstrap";
+
+html,body{
+	background-color: #F5F5F5;
+	margin-top: 25px;
+}
+
+.navbar-dark{
+	z-index: 1;
+}
+
+main{
+	padding-top: 25vh;
+	height: 100vh;
+	width: auto;
+	background-size: cover;
+	color: #cccccc;
+	text-align: center;
+}
+
+abbr{ display: none;}
+
+a, a:hover{
+	text-decoration: none;
+	color: #000;
+}
+
+.form-control:focus{
+		border-color: #cccccc;
+    -webkit-box-shadow: none;
+		box-shadow: none;
+}
+
+#notice_wrapper{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	background: #651FFF;
+	.alert, .notice{
+		padding: 1rem 0;
+		text-align: center;
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 500;
+		color: #FFFFFF;
+		letter-spacing: 1px;
+	}
+}
+
+
+.cover{
+	height: 650px;
+	background-color: #000 !important;
+}
+
+footer{
+	height: 100px;
+	color: #cccccc;
+}

@@ -1,0 +1,116 @@
+<% provide(:page_title, "All Inquiries") %>
+<% provide(:contact_active, "active") %>
+<% if current_user && !current_user.admin? %>
+<% if !current_user.contacts.blank? %>
+  <div class="container">
+    <div class="row justify-content-center" style="margin-top: 8vh">
+      <div class="col-lg-12">
+        <div class="alert alert-success">
+          Hi!
+          <strong>
+          <% if current_user.name? %>
+            <%= current_user.name %>
+          <% else %>
+            <%= current_user.email %>
+          <% end %>
+          </strong>
+          , we have found
+          <%= current_user.contacts.count %>
+          inquiry(s) committed by you.
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <% current_user.contacts.each do |contact| %>
+        <div class="col-lg-12">
+          <div class="card mb-2">
+            <div class="card-body">
+              <p class="lead"><%= contact.title %></p>
+              <hr class="my-2">
+              <small class="text-muted">You inquired at <%= contact.created_at.strftime("%B, %d, %Y")%></small>
+              <br>
+              <%= link_to "Read", contact, :class=>"btn btn-info mt-2"%>
+              <%= link_to "Delete", contact_path(contact), method: :delete, data:{confirm:'Are you sure?'}, :class=>"btn btn-warning mt-2"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="row justify-content-center" style="margin-top: 8vh">
+      <div class="col-lg-12">
+        <div class="alert alert-warning">
+          Hi!
+          <strong>
+          <% if current_user.name? %>
+            <%= current_user.name %>
+          <% else %>
+            <%= current_user.email %>
+          <% end %>
+          </strong>
+          , we can't find any inquiry committed by you.
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="row justify-content-center mt-2">
+    <div class="col-lg-12">
+      <%= link_to "Inquire Now", new_contact_path, :class=>"btn btn-success" %>
+      <%= link_to "Back", root_path, :class=>"btn btn-secondary ml-2"%>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="container">
+  <div class="row justify-content-center" style="margin-top: 8vh">
+    <div class="col-lg-12">
+      <div class="alert alert-success">
+        Hi!
+        <strong>
+          Admin
+        </strong>
+          , we have found
+          <%= Contact.all.count %>
+          inquiry(s).
+      </div>
+
+      <table class="table">
+        <thead>
+        
+          <tr>
+            <th>Date</th>
+            <th>Name / Email</th>
+            <th>Message Title</th>
+            <th colspan="3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @contacts.each do |contact| %>
+          <tr>
+            <td><%= contact.created_at.strftime("%B, %d, %Y") %></td>
+            <td>
+              <% if contact.user.name? %>
+                <%= contact.user.name %>
+              <% else %>
+                <%= contact.user.email %>
+              <% end %>
+            </td>
+            <td><%= contact.title %></td>
+            <td>
+              <%= link_to "View", contact, :class=>"btn btn-info" %>
+              <%= link_to "Delete", contact_path(contact), method: :delete, data:{confirm: 'Are you sure?'}, :class=>"btn btn-warning"%>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= link_to "Back", root_path, :class=>"btn btn-secondary ml-2"%>
+</div>
+<% end %>

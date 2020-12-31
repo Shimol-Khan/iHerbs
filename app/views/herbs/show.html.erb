@@ -1,0 +1,36 @@
+<% provide(:page_title, "Herb > #{@herb.name}") %>
+<% provide(:herb_active, "active") %>
+<div class="container pt-3 pb-2">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="text-center">
+        <%= image_tag(@herb.image_link, :size=>"320x520", :class=>"img-fluid rounded")%>
+        <p class="lead"><%= @herb.name %></p>
+      </div>
+      <hr class="my-1">
+      <small class="text-muted">Published at <%= @herb.created_at.strftime("%B, %d, %Y")%></small>
+      <hr class="my-1">
+      <div class="badge badge-success mt-3">Description</div>
+      <p class="lead text-justify"><%= @herb.description %></p>
+      <hr class="my-2">
+      <div class="badge badge-info mt-3">Usage</div>
+      <p class="lead text-justify"><%= @herb.usage %></p>
+      <hr class="my-3">
+      <%= link_to 'Back', herbs_path, :class=>"btn btn-primary" %>
+
+      <% if user_signed_in? %>
+        <% if can? :update, @herb %>
+          <%= link_to 'Edit', edit_herb_path(@herb), :class=>"btn btn-info" %>
+        <% end %>
+
+        <% if can? :destroy, @herb %>
+          <%= link_to 'Delete', herbs_path, method: :delete, data:{confirm: 'Are you sure?' }, :class=>"btn btn-warning" %>
+        <% end %>
+
+        <% if can? :create, @herb %>
+          <%= link_to 'New', new_herb_path, :class=>"btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
