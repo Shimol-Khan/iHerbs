@@ -5,7 +5,7 @@ class HerbsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @herbs = Herb.all.order('created_at DESC').where(["name like ?", "%#{params[:search]}%"]).paginate(page: params[:page], per_page: 6)
+    @herbs = Herb.all.order('created_at DESC').where(["name ILIKE ?", "%#{params[:search]}%"]).paginate(page: params[:page], per_page: 6)
   end
 
   def show
